@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'articles-list' %}">Home</a></li>
+        <li><a href="{% url 'categories' %}">Categories</a></li>
+        <li><a href="{% url 'create-article' %}">Create</a></li>
+    </ul>
+    <a href="{% url 'user-articles' %}"><button>My Articles</button></a>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+</nav>

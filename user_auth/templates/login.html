@@ -1,0 +1,21 @@
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<fieldset>
+    <legend>Log-in :</legend>
+    <form action="" method="post">
+        {% csrf_token %}
+    
+        <label for="">Username :</label>
+        <input type="text" name="uname"><br><br>
+    
+        <label for="">Password :</label>
+        <input type="password" name="pwd"><br><br>
+    
+        <input type="submit" value="Login"><br><br>
+    
+        <p>Don't have an account ? <span><a href="{% url 'signup' %}">Signup</a></span></p>
+    </form>
+</fieldset>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+
+<img src="{{ profile.profile.url }}" alt="" width="100"> 
+<h3>{{ profile.user }}</h3>
+<h3>{{ profile.bio }}</h3>
+<h3>{{ profile.phone_number }}</h3>
+
+<form action="{% url 'follow' profile.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Follow">
+</form>
+
+{% if request.user == profile.user %}
+    <a href="{% url 'update-profile' profile.id %}"><button>Edit</button></a>
+{% else %}
+    <a href="{% url 'update-profile' profile.id %}"><button disabled>Edit</button></a>
+{% endif %}
+
+
+<h4>Followers:{{ followers }}</h4>
+<h4>Posts:{{ no_of_posts }}</h4>
+
+{% for article in articles %}
+    <h2>{{ article.title }}</h2>
+    <h3>{{ article.author }}</h3>
+    <h3>{{ article.created_at }}</h3>
+    <a href="{% url 'article-details' article.id %}"><button>View Details</button></a>
+
+{% endfor %}
+
+
+{% endblock content %}

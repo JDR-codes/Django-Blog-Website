@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Articles {% endblock title %}
+
+{% block content %}
+
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.content }}</p>
+    <h3>{{ article.author }}</h3><a href="{% url 'profile' article.author %}"><button>Profile</button></a>
+    <h3>{{ article.created_at }}</h3>
+
+    {% if request.user == article.author %}
+        <a href="{% url 'update-details' article.id %}"><button>Edit</button></a>
+        <a href="{% url 'delete-article' article.id %}"><button>Delete</button></a>
+    {% else %}
+        <a href="{% url 'update-details' article.id %}" ><button disabled>Edit</button></a>
+        <a href="{% url 'delete-article' article.id %}"><button disabled>Delete</button></a>
+    {% endif %}
+    
+    <a href="{% url 'add-comment' article.id %}"><button>Comment</button></a>
+
+    <form action="{% url 'like' article.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="{{ likes.like_count }}❤️">
+    </form>
+
+
+{% endblock content %}

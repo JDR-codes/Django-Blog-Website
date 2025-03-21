@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Comments {% endblock title %}
+
+{% block content %}
+<form action="" method = 'post'>
+    {% csrf_token %}
+    <label for="">Comment:</label>
+    <textarea name="comment" id="" required></textarea><br><br>
+    <input type="submit" value="Comment">
+</form>
+
+
+{% if comments %}
+    {% for comment in comments %}
+        <p>{{ comment.comment }}</p>
+        <h5>{{ comment.created_at }}</h5>
+        <h3>{{ comment.user }}</h3>
+
+        {% if comment.user == request.user %}
+            <a href="{% url 'delete-comment' comment.id %}"><button>Delete</button></a>
+        {% else %}
+            <a href="{% url 'delete-comment' comment.id %}"><button disabled>Delete</button></a>
+        {% endif %}
+
+    {% endfor %}
+{% elif msg %}
+    <p>{{ msg }}</p>
+{% endif %}
+
+{% endblock content %}

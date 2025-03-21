@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Articles | {% endblock title %}
+
+{% block content %}
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+
+{% for post in posts %}
+    <h2>{{ post.title }}</h2>
+    <h2>{{ post.author }}</h2>
+    <h2>{{ post.create_at }}</h2>
+    <a href="{% url 'article-details' post.id %}"><button>View Details</button></a>
+
+{% endfor %}
+
+{% endblock content %}

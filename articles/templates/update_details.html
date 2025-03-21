@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Articles {% endblock title %}
+
+{% block content %}
+
+<br><br>
+<form action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <label for="">{{ field.label }}</label>
+        {{ field }} <br><br>
+    {% endfor %} <br><br>
+    <input type="submit" value="Update">
+</form>
+
+
+{% endblock content %}
