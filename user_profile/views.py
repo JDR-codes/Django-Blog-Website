@@ -68,11 +68,4 @@ def follow_user_view(request,id):
         profile.save()
         return redirect('profile',profile.user)
 
-# Optional...
-'''
-# user should be able to delete only his own profile, not other users profile
-# make sure to give a confirmation message ....
-# as all the posts will be connected to the user..
-def delete_profile(request, id):
-    pass
-'''
+
