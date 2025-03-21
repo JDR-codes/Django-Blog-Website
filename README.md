@@ -51,6 +51,34 @@ A fully functional blog website with user authentication, article management, li
 - **Manage Your Profile** and interact with the community.
 
 ## Project Structure
+MYBLOG/
+│-- articles/            # App for managing blog articles
+│   ├── migrations/      # Database migrations
+│   ├── models.py        # Database models for articles
+│   ├── views.py         # Views for handling article requests
+│   ├── urls.py          # URL routing for articles
+│   ├── templates/       # Templates related to articles
+│-- likes_comments/      # App for handling likes & comments
+│   ├── models.py        # Models for likes & comments
+│   ├── views.py         # Views for handling interactions
+│   ├── urls.py          # URL routing for likes & comments
+│-- media/               # Storage for uploaded media files
+│-- myblog/              # Main Django project configuration
+│   ├── settings.py      # Project settings
+│   ├── urls.py          # Main URL configurations
+│   ├── wsgi.py          # WSGI entry point
+│   ├── asgi.py          # ASGI entry point
+│-- templates/           # Global HTML templates
+│-- user_auth/           # User authentication app
+│   ├── models.py        # User authentication models
+│   ├── views.py         # Views for login/logout/signup
+│   ├── urls.py          # URL routing for authentication
+│-- user_profile/        # User profile management app
+│   ├── models.py        # Profile model
+│   ├── views.py         # Views for user profile
+│   ├── urls.py          # URL routing for profiles
+│-- db.sqlite3           # SQLite database file
+│-- manage.py            # Django management script
 
 
 ## Contributing
