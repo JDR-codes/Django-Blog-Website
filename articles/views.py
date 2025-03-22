@@ -15,7 +15,7 @@ def articles_list_view(request):
         profile = Profile.objects.get(user = request.user)
     except:
         return redirect('user_create')
-    articles = Article.objects.filter(author__in = profile.followers.all())
+    articles = Article.objects.filter(author__in = profile.following.all())
     print(articles)
     context = {
         'articles' : articles

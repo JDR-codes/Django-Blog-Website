@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile = models.ImageField(upload_to='profiles/')
+    profile = models.ImageField(upload_to='profiles/',null=True)
     bio = models.TextField(null=True)
     followers = models.ManyToManyField(User, related_name='followers')
+    following = models.ManyToManyField(User, related_name='following')
     phone_number = models.IntegerField(null=True)
 
     def __str__(self):

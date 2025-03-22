@@ -24,13 +24,18 @@ def view_profile(request,user):
     articles = Article.objects.filter(author = user)
     no_of_posts = len(articles)
 
+    following = 0
+    for follow in profile.following.all():
+        following += 1
+
     followers = 0
-    for follower in profile.followers.all():
+    for follow in profile.followers.all():
         followers += 1
 
     context['profile'] = profile
     context['articles'] = articles
     context['no_of_posts'] = no_of_posts
+    context['following'] = following
     context['followers'] = followers
 
     return render(request,'profile.html',context)
@@ -58,14 +63,18 @@ def edit_profile(request,id):
 
 def follow_user_view(request,id):
     if request.method == 'POST':
-        profile = Profile.objects.get(id = id)
-        if request.user in profile.followers.all():
-            profile.followers.remove(request.user)
+        follow = Profile.objects.get(id = id)
+        profile = Profile.objects.get(user = request.user)
+        if follow.user in profile.following.all():
+            profile.following.remove(follow.user)
+            follow.followers.remove(profile.user)
         else:
-            if profile.user != request.user:
-                profile.followers.add(request.user)
+            if profile.user != follow.user:
+                profile.following.add(follow.user)
+                follow.followers.add(profile.user)
+
 
         profile.save()
-        return redirect('profile',profile.user)
+    return redirect('articles-list')
 
 
